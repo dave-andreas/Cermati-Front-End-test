@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import './App.css'
+import {connect} from 'react-redux'
+import Notification from './component/notification'
+import Header from './component/header'
+import Highlight from './component/highlight'
+import Footer from './component/footer'
+import Panel from './component/panel'
 
-function App() {
+function App ({notif}) {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{display:'flex',justifyContent:'center'}}>
+      <Notification/>
+      <div className='atas' style={{paddingTop:notif?null:0,transition:'0.2s',maxWidth:'1366px'}}>
+        <Header/>
+        <Highlight/>
+        <Footer/>
+        <Panel/>
+      </div>
     </div>
   );
 }
 
-export default App;
+const stp = ({reducer}) => {
+  return {
+      notif: reducer.notif
+  }
+}
+
+export default connect(stp) (App);
