@@ -33,14 +33,14 @@ const Panel = ({panel,tutup}) => {
     }
 
     async function onx () {
-        await localStorage.setItem('target', 60)
+        await localStorage.setItem('target', 600)
         tutup(false)
         setTimeout(()=>{
             tutup(true)
             console.log('timeout')
             clearInterval(interval)
             localStorage.removeItem('target')
-        },60000)
+        },600000)
         var no = await localStorage.getItem('target')
         var interval = setInterval(()=>localStorage.setItem('target',no-=1),1000)
     }
